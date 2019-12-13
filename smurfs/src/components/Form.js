@@ -1,24 +1,50 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {inputChange, addSmurf, submit} from '../state/actionCreators';
  
-function Form(){
+export function Form({formData, inputChange, addSmurf, submit}){
+     
+    const onValueChange = event => {
+        inputChange(
+          event.target.name,
+          event.target.value,
+        );
+       
+      };
+      
+    const onFormSubmit = event => {
+        event.preventDefault();
+     
+        console.log(formData);
+        
+        
+        addSmurf(formData);
+     
+        submit();
+      };
     return(
         <div>
-            <form>
-            <label> Name
-                <input  name='name' />
-            </label>
-            <br />
-            <label> Age
-                <input  name='age' />
-            </label>
-            <br />
-            <label> Height
-                <input  name='height' />
-            </label>
-            <br />
-            <button> Add Smurf</button>
+            <form onSubmit= {onFormSubmit}>
+                <label> Name
+                    <input type="text"  name="name" value={formData.name} onChange={onValueChange} />
+                </label>
+                <br />
+                <label> Age
+                    <input type="number" name="age" value={formData.age} onChange={onValueChange} />
+                </label>
+                <br />
+                <label> Height
+                    <input type= "text"  name="height" value={formData.height} onChange={onValueChange} />
+                </label>
+                <br />
+                <button type="submit"> Add Smurf</button>
             </form>
         </div>
     )
 }
-export default Form;
+function mapStateToProps(state){
+    return{
+        formData : state.formData
+    }
+}
+export default connect(mapStateToProps, {inputChange, addSmurf, submit})(Form);

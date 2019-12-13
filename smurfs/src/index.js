@@ -5,13 +5,14 @@ import App from "./components/App";
 import {combineReducers, createStore,compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import { dataReducer } from './state/reducers.js';
+import { dataReducer, formReducer } from './state/reducers.js';
 
 
 const monsterReducer = combineReducers({
     data: dataReducer,
+    formData: formReducer 
 })
-const store = createStore(monsterReducer, {},
+const store = createStore(monsterReducer, 
     compose(
       applyMiddleware(thunk /* ,etc , other middlewares */),
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
