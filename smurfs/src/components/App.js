@@ -3,8 +3,9 @@ import "./App.css";
 import Display from "./Display";
 import {connect} from 'react-redux';
 import {getData} from '../state/actionCreators';
-export function App({getData}){
-  //  console.log(props)
+import Form  from './Form'
+export function App({data, getData}){
+   console.log(data)
   useEffect(()=>{
     getData()
   }, [])
@@ -19,16 +20,17 @@ export function App({getData}){
         <div>Have fun!</div>
         <div>
           <Display />
+          <Form />
         </div>
       </div>
     );
   
 }
-// function  mapStateToProps(state){
-//   return{
-//     data: state.data
-//   }  
+function  mapStateToProps(state){
+  return{
+    data: state.data
+  }  
   
-// }
+}
 
 export default connect(state=>state, {getData})(App);
