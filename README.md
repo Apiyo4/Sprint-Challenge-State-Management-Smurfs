@@ -23,10 +23,25 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+Context API lets you pass data to all of the components in the tree without writing them manually in each of them.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions are object that contains the type and payload. It's what a user makes when interacting with the application. 
+Reducer is a function that takes state and returns state. It's used to pass data to components without the need of prop-drilling.
+The store is where state for the whole application is kept. It is known as a single source truth because there's only one store in a react application and it contains all data for the applicastion state.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
-- [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Application state is state that covers the whole application hence can be kept in a centralized place while component state is state that is kept in the component andcan only be accessed in the component or through prop-drilling to other children.
+- [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`? 
+Redux-thunk is a  middleware that enables us to intercept data and then modify it if we wish before passing it back to reducer then to state. It changes state since we now have two functions, one function that invokes the other and to explicitly declare dispatch when usinf redux.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+Redux, because it's a vailable everywhere in the application unlike contextApi where it's only available in the hierachial tree.
+
 
 ## Project Set Up
 
