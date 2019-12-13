@@ -13,3 +13,19 @@ export function dataReducer(state = initialState, action) {
       return state;
   }
 }
+const initialForm = {
+   name: '',
+   age: '',
+   height: ''
+}
+export function formReducer(form=  initialForm, action){
+  switch(action.type){
+    case types.INPUT_CHANGES:
+      return {
+        ...form,
+        [action.payload.name]: action.payload.value,
+      }
+    default:
+      return form;
+  }
+}
