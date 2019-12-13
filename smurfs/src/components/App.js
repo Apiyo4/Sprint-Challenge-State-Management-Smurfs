@@ -3,14 +3,16 @@ import "./App.css";
 import Display from "./Display";
 import {connect} from 'react-redux';
 import {getData} from '../state/actionCreators';
-export function App({data, getData}){
+export function App({getData}){
+  //  console.log(props)
   useEffect(()=>{
     getData()
   }, [])
   
     return (
       <div className="App">
-        {console.log(data)}
+        {/* {console.log(data)}+
+         */}
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <div>Welcome to your state management version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
@@ -22,11 +24,11 @@ export function App({data, getData}){
     );
   
 }
-function  mapStateToProps(state){
-  return{
-    data: state.data
-  }  
+// function  mapStateToProps(state){
+//   return{
+//     data: state.data
+//   }  
   
-}
+// }
 
-export default connect(mapStateToProps, {getData})(App);
+export default connect(state=>state, {getData})(App);
