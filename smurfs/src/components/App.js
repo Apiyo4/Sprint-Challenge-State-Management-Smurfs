@@ -1,10 +1,16 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Display from "./Display";
-class App extends Component {
-  render() {
+import {connect} from 'react-redux';
+import {getData} from '../state/actionCreators';
+export function App({data, getData}){
+  useEffect(()=>{
+    getData()
+  }, [])
+  
     return (
       <div className="App">
+        {console.log(data)}
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <div>Welcome to your state management version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
@@ -14,7 +20,13 @@ class App extends Component {
         </div>
       </div>
     );
-  }
+  
+}
+function  mapStateToProps(state){
+  return{
+    data: state.data
+  }  
+  
 }
 
-export default App;
+export default connect(mapStateToProps, {getData})(App);

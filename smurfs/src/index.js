@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./components/App";
 import {combineReducers, createStore,compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import { dataReducer } from './state/reducers.js';
 
 
 const monsterReducer = combineReducers({
-    data: reducer,
+    data: dataReducer,
 })
 const store = createStore(monsterReducer, {},
     compose(
@@ -17,7 +19,7 @@ const store = createStore(monsterReducer, {},
     );
 
 ReactDOM.render(
-<Provider>
+<Provider store={store}>
 <App />
 </Provider>,
  document.getElementById("root"));
