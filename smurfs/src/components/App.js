@@ -1,16 +1,37 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-class App extends Component {
-  render() {
+import Display from "./Display";
+import {connect} from 'react-redux';
+import {getData} from '../state/actionCreators';
+import Form  from './Form'
+export function App({data, getData}){
+    
+  useEffect(()=>{
+    getData()
+  }, [data])
+  
     return (
       <div className="App">
+        {/* {console.log(data)}+
+         */}
         <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        
+        <div>
+         {data.map(item=>{
+           return   <Display item={item} key={item.id} />
+         })}
+         
+          <Form />
+        </div>
       </div>
     );
-  }
+  
+}
+function  mapStateToProps(state){
+  return{
+    data: state.data
+  }  
+  
 }
 
-export default App;
+export default connect(mapStateToProps, {getData})(App);
